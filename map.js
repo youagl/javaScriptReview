@@ -1,4 +1,4 @@
-// 创建对象
+// 创建JavaScript对象
 const apples = {name:"Apples"};
 // 创建新的Map
 const fruits = new Map();

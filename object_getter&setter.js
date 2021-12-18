@@ -1,3 +1,4 @@
+// 对象的getter/setter访问器
 var person = {
     firstname: "yoyo",
     lastname:"Li",
@@ -111,5 +112,5 @@ const person3 = {
   };
   
   Object.defineProperty(person3, "language", {enumerable:false});//修改对象的属性值
-  console.log('Object.getOwnPropertyNames ',Object.getOwnPropertyNames(person3));  // 返回数组的数组
+  console.log('Object.getOwnPropertyNames ',Object.getOwnPropertyNames(person3));  // 以数组形式返回所有属性
   console.log('Object.keys ',Object.keys(person3));//[ 'firstName', 'lastName' ] 前面设置了language不可枚举
