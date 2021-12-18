@@ -1,3 +1,51 @@
+// 本章节内容-匿名函数和具名函数  闭包
+
+// 一、具名函数
+function myFn(){
+
+}
+console.log('具名函数 ',myFn.name);
+
+// 匿名函数：两种写法
+// 自执行匿名函数，带参数
+(function(x){
+    console.log('我是匿名函数'+x);
+})(1);
+
+(function(){
+    console.log('我是匿名函数2');
+}())
+// 立即执行的匿名函数并不是函数，因为已经执行过了，所以它是一个结果
+
+// 二、闭包
+// outer()
+function box(){
+    let counter = 10;
+    function inner(){
+        return counter;
+    }
+    return inner;
+}
+
+let outer = box();
+console.log('box闭包 ',outer());
+// inner又被外部outer给接收，回收机制检查到内部的变量被引用，就不会执行回收
+
+// 使用匿名函数改写上例的闭包
+let outer1 = (function(){
+    let couter = 11;
+    return function(){
+        return couter;
+    }
+})();
+
+console.log('使用匿名函数改写上例的闭包 ',outer1());
+
+//执行outer就相当于执行了匿名函数内部return的闭包函数
+//这个闭包函数可以访问到匿名函数内部的私有变量a，所以打印出11
+
+
+// 三、使用匿名函数写闭包
 var add = (function(){
     var counter = 0;
     return function(){
@@ -26,4 +74,29 @@ var decrement = (function() {
     }
 })();
 
-console.log('decrement ',decrement(1));
+console.log('decrement ',decrement(2));
+
+// 实战 实现每隔一秒打印红黄绿
+let arr = ["red","yellow","green"];
+for(let i = 0;i<arr.length;i++){
+    setTimeout(function(){
+        console.log(arr[i]);
+    },1000*i)
+}
+
+for(var i = 0;i<arr.length;i++){
+    (function(i){
+        setTimeout(function(){
+            console.log(arr[i]);
+        },1000*i);
+    })(i);
+}
+// 把上例的，使用具名函数改写匿名函数的部分
+for(var i = 0;i<arr.length;i++){
+    function getArr(i){
+        setTimeout(function(){
+            console.log(arr[i]);
+        },1000*i);
+    };
+    getArr(i);
+}
