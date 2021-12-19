@@ -83,8 +83,8 @@ for(let i = 0;i<arr.length;i++){
         console.log(arr[i]);
     },1000*i)
 }
-
 for(var i = 0;i<arr.length;i++){
+    // 这里的i一定要传进去
     (function(i){
         setTimeout(function(){
             console.log(arr[i]);
