@@ -20,6 +20,7 @@ function step3(n) {
     return takeLongTime(n);
 }
 
+
 // 使用promise的写法
 function doIt() {
     console.time("doIt");
@@ -36,12 +37,12 @@ function doIt() {
 
 // 使用async/await来实现
 async function doIt_byAsync(){
-    console.time("doIt_byAsync");
+    console.time();
     const time1 = 300;
     const time2 = await step1(time1);
     const time3 = await step2(time2);
     const result = await step3(time3);
     console.log(`result is ${result}`);
-    console.timeEnd("doIt_byAsync");
+    console.timeEnd();
 }
-doIt_byAsync();
+// doIt_byAsync();
