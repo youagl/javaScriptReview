@@ -1,1 +1,1 @@
-# 记录学习JavaScript，持续更新
+# 记录重学JavaScript，持续更新
