@@ -25,5 +25,5 @@ function getArrayMin(arr){
 let arr = [30,2,3,5,67,100];
 console.log('Math.max.apply ',Math.max.apply(null,arr));
 console.log('Math.min.apply ',Math.min.apply(null,arr));
-console.log('max ',getMax(arr));
+console.log('max ',getArrayMax(arr));
 console.log('min ',getArrayMin(arr));
