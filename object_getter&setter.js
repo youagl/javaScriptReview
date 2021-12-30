@@ -45,8 +45,15 @@ var person2 = {
 console.log('函数形式 ',person1.fullname());
 console.log('getter形式 ',person2.fullname);
 console.log(Object.getOwnPropertyNames(person2));//以数组返回所有属性名称
-Object.defineProperty(person2,"age",{value:"28"});
-console.log('Object.definePrototy ',person2.age);
+console.log(Object.defineProperty(person2,"age",{configurable: true,value:"28"}));
+// 默认情况下，使用 Object.defineProperty() 添加的属性值是不可修改（immutable）的，所以执行下面的语句会报错，当configurable: true时，则可以
+console.log(Object.defineProperty(person2,"age",{value:"27"}));
+//直接赋值的修改方式，跟上一句的修改同理。
+person2.firstname = 'alice';
+// person2.age = 27;
+console.log(Object.defineProperty(person2,"firstname",{value:"judy"}));
+console.log('Object.definePrototy ',person2.age,person2.firstname);//28 judy
+console.log(Object.getOwnPropertyNames(person2));//以数组返回所有属性名称
 
 // 总结
 // 为什么要使用getter/setter访问器
@@ -111,6 +118,12 @@ const person3 = {
     language : "EN"
   };
   
-  Object.defineProperty(person3, "language", {enumerable:false});//修改对象的属性值
-  console.log('Object.getOwnPropertyNames ',Object.getOwnPropertyNames(person3));  // 以数组形式返回所有属性
+  Object.defineProperty(person3, "language", {enumerable:false});//修改对象的属性值 设置为不可枚举的
+  console.log('Object.getOwnPropertyNames ',Object.getOwnPropertyNames(person3));  // [ 'firstName', 'lastName', 'language' ] 以数组形式返回自身所有属性
   console.log('Object.keys ',Object.keys(person3));//[ 'firstName', 'lastName' ] 前面设置了language不可枚举
+//   for in会遍历自身和对象原型上可枚举的属性 一般在使用时，加上Object.hasOwnProperty.call(object,key)进行过滤
+  for (const key in person3) {
+      if (Object.hasOwnProperty.call(person3, key)) {
+          const element = person3[key];
+      }
+  }

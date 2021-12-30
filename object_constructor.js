@@ -43,7 +43,7 @@ let anran = new Anran();
 // 创建 Anran 的一个新实例
 // 不影响实例去获取对象原型上的属性和方法
 console.log('Anran.prototype.constructor ',anran.value,anran.age);//yoyolee
-console.log('Anran.prototype.constructor ',anran.constructor===Anran);//true
+console.log('Anran.prototype.constructor ',anran.constructor===An);//true
 
 
   // console.time()
